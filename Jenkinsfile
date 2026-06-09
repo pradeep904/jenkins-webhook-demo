@@ -44,29 +44,60 @@
 //     }
 
 // }
+
+
+
+// pipeline {
+
+//     agent any
+
+//     stages {
+//         stage('credentials test'){
+//             steps {
+//                 withCredentials([
+//                     string(
+//                         credentialsId: 'github-token',
+//                         variable: 'TOKEN'
+//                     )
+//                 ]){
+//                     sh 'echo Token Loaded' 
+//                 }
+//             }
+//         }
+//     } 
+
+//     post {
+//         success {
+//             archiveArtifacts artifacts: 'target/*.jar'
+//         }
+//     }   
+
+// }
+
+
+
+
+// Sonarqube 
 pipeline {
 
     agent any
 
     stages {
-        stage('credentials test'){
+
+        stage('Build'){
+
             steps {
-                withCredentials([
-                    string(
-                        credentialsId: 'github-token',
-                        variable: 'TOKEN'
-                    )
-                ]){
-                    sh 'echo Token Loaded' 
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('SonarQube Analysis'){
+
+            steps {
+                withSonarQubeEnv('sonarqube'){
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
-    } 
-
-    post {
-        success {
-            archiveArtifacts artifacts: 'target/*.jar'
-        }
-    }   
-
+    }
 }

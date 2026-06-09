@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.devops.AppTest" time="0.026" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.devops.AppTest" time="0.013" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="21.0.11+10-1-22.04.2-Ubuntu"/>
@@ -7,8 +7,8 @@
     <property name="maven.multiModuleProjectDirectory" value="/vagrant/devops-maven/jenkins-webhook-demo"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
-    <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
@@ -24,6 +24,7 @@
     <property name="os.name" value="Linux"/>
     <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="sonar.login" value="squ_9efade3df425d09cae9d09431f795583a961bb08"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="maven.conf" value="/usr/share/maven/conf"/>
@@ -31,17 +32,18 @@
     <property name="java.class.version" value="65.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.15.0-179-generic"/>
+    <property name="os.version" value="5.15.0-181-generic"/>
     <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/vagrant"/>
     <property name="user.timezone" value="Etc/UTC"/>
+    <property name="sonar.host.url" value="http://localhost:9000"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="21"/>
     <property name="user.name" value="vagrant"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean package"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=squ_9efade3df425d09cae9d09431f795583a961bb08"/>
     <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -56,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="com.devops.AppTest" name="testApp" time="0.026"/>
+  <testcase classname="com.devops.AppTest" name="testApp" time="0.013"/>
 </testsuite>
