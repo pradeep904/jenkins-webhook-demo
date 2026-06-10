@@ -78,34 +78,83 @@
 
 
 // Sonarqube 
+// pipeline {
+
+//     agent any
+
+//     stages {
+
+//         stage('Build'){
+
+//             steps {
+//                 sh 'mvn clean package'
+//             }
+//         }
+
+//         stage('SonarQube Analysis'){
+
+//             steps {
+//                 withSonarQubeEnv('sonarqube'){
+//                     sh 'mvn sonar:sonar'
+//                 }
+//             }
+//         }
+
+//         stage('Quality Gate'){
+//             steps {
+//                 timeout(time:2, unit: 'MINUTES'){
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+// Day-5.7
 pipeline {
 
     agent any
 
     stages {
 
-        stage('Build'){
-
+        stage('Checkout') {
             steps {
-                sh 'mvn clean package'
+                checkout scm
             }
         }
 
-        stage('SonarQube Analysis'){
-
+        stage('Build') {
             steps {
-                withSonarQubeEnv('sonarqube'){
-                    sh 'mvn sonar:sonar'
-                }
+                sh 'mvn clean compile'
             }
         }
 
-        stage('Quality Gate'){
+        stage('Test') {
             steps {
-                timeout(time:2, unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: true
-                }
+                sh 'mvn test'
             }
         }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
+        stage('SonarQube') {
+            steps {
+                echo 'Running Analysis'
+            }
+        }
+
+        stage('Nexus') {
+            steps {
+                echo 'Uploading Artifact'
+            }
+        }
+
     }
+
 }
