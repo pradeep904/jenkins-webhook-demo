@@ -12,7 +12,7 @@ jobs:
 
    steps:
 
-     - name: Checkour Repository
+     - name: Checkout Repository
        uses: actions/checkout@v4
 
      - name: Setup Java
@@ -20,6 +20,13 @@ jobs:
        with:
          distribution: temurin
          java-version: '21'
+         cache: maven
 
      - name: Build Project
        run: mvn clean package
+
+     - name: Upload Artifact
+       uses: actions/upload-artifact@v4
+       with:
+         name: app
+         path: target/*.jar
