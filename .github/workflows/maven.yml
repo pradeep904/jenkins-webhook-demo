@@ -1,0 +1,25 @@
+name: Maven Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+   runs-on: ubuntu-latest
+
+   steps:
+
+     - name: Checkour Repository
+       uses: actions/checkout@v4
+
+     - name: Setup Java
+       uses: actions/setup-java@v4
+       with:
+         distribution: termurin
+         java-version: '21'
+
+     - name: Build Project
+       run: mvn clean package
